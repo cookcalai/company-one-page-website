@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AiPeak 偉峰達科技 | 專業 APP 開發與智慧科技維護</title>
 
-<link rel="icon" type="image/png" href="https://msbvwgauqbgerzhocfwy.supabase.co/storage/v1/object/public/san/favicon.png">
+    <link rel="icon" type="image/png" href="https://msbvwgauqbgerzhocfwy.supabase.co/storage/v1/object/public/san/favicon.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Premium Sans-Serif Font Stack for high-end B2B clients: Inter for English/Numbers & Noto Sans TC for traditional Chinese -->
@@ -643,6 +643,46 @@
         const successModal = document.getElementById('success-modal');
         const modalContainer = successModal.querySelector('div');
         const closeModalBtn = document.getElementById('close-modal-btn');
+
+        consultForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitButton = consultForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = '送出中，請稍候...';
+
+            try {
+                const formData = new FormData(consultForm);
+
+                const response = await fetch(consultForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    successModal.classList.remove('hidden');
+
+                    setTimeout(() => {
+                        successModal.classList.remove('opacity-0');
+                        modalContainer.classList.remove('scale-95');
+                        modalContainer.classList.add('scale-100');
+                    }, 10);
+
+                    consultForm.reset();
+                } else {
+                    alert('送出失敗，請稍後再試，或直接寄信到 info@aipeakcorp.com');
+                }
+            } catch (error) {
+                alert('送出失敗，請檢查網路連線，或直接寄信到 info@aipeakcorp.com');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        });
 
         closeModalBtn.addEventListener('click', () => {
             successModal.classList.add('opacity-0');
