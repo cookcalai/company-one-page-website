@@ -503,33 +503,33 @@
 
                 <!-- Right Hand Column Form Frame Segment -->
                 <div class="lg:col-span-7">
-                    <form id="consult-form" class="bg-white p-7 md:p-9 rounded-[22px] border-2 border-brand-ink shadow-[5px_5px_0px_0px_#1e1e1e] space-y-5 h-full flex flex-col justify-between">
+                    <form id="consult-form" action="https://formspree.io/f/mnjybvnq" method="POST" class="bg-white p-7 md:p-9 rounded-[22px] border-2 border-brand-ink shadow-[5px_5px_0px_0px_#1e1e1e] space-y-5 h-full flex flex-col justify-between">
                         <div class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">怎麼稱呼您？ *</label>
-                                    <input type="text" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：林小姐 / 張先生">
+                                    <input name="name" type="text" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：林小姐 / 張先生">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">公司組織名稱</label>
-                                    <input type="text" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：創想科技有限公司">
+                                    <input name="company" type="text" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：創想科技有限公司">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">電子信箱 *</label>
-                                    <input type="email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="hello@aipeakcorp.com">
+                                    <input name="email" type="email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="hello@aipeakcorp.com">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">聯絡電話</label>
-                                    <input type="tel" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：0912-345-678">
+                                    <input name="phone" type="tel" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold" placeholder="例：0912-345-678">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">主要諮詢業務</label>
-                                <select class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold">
+                                <select name="service" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs font-bold">
                                     <option>我想開發一個全新的 APP</option>
                                     <option>現有系統需要細心維護與代管</option>
                                     <option>結合 AI 技術或大語言模型應用</option>
@@ -539,7 +539,7 @@
 
                             <div>
                                 <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">簡單描述一下專案構想</label>
-                                <textarea rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs resize-none font-bold" placeholder="寫點什麼吧... 我們非常期待！"></textarea>
+                                <textarea name="message" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 focus:border-brand-ink focus:bg-white rounded-xl transition-all outline-none text-slate-800 text-xs resize-none font-bold" placeholder="寫點什麼吧... 我們非常期待！"></textarea>
                             </div>
                         </div>
 
@@ -643,17 +643,6 @@
         const successModal = document.getElementById('success-modal');
         const modalContainer = successModal.querySelector('div');
         const closeModalBtn = document.getElementById('close-modal-btn');
-
-        consultForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            successModal.classList.remove('hidden');
-            setTimeout(() => {
-                successModal.classList.remove('opacity-0');
-                modalContainer.classList.remove('scale-95');
-                modalContainer.classList.add('scale-100');
-            }, 10);
-            consultForm.reset();
-        });
 
         closeModalBtn.addEventListener('click', () => {
             successModal.classList.add('opacity-0');
